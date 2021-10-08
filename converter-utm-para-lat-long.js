@@ -11,7 +11,7 @@ if(ajuda) {
     console.log("   comando: node converter-utm-para-lat-long.js")
     console.log("   opções:")
     console.log('       --path: *Obrigatorio*, define o caminho para o arquivo csv de origem \n         Ex: --path="C://arquivo.csv"\n')
-    console.log('       --out:  *Opcional*, define o local onde será gravado o arquivo, o valor padrão é "./files/latlon.csv"\n         Ex: --out="C://pasta/nomeDoArquivo"\n')
+    console.log('       --out:  *Opcional*, define o local onde será gravado o arquivo, o valor padrão é "./latlon.csv"\n         Ex: --out="C://pasta/nomeDoArquivo"\n')
     console.log('Obsevação: O arquivo csv deve estar no formato "Leste;Norte;Numero da zona;Hemisferio"')
     console.groupEnd()
     return
@@ -48,10 +48,10 @@ for(let coord of convertedLines) {
 const csvFormatted = csvData.join("")
 
 
-fs.writeFile(`${out?out+'.csv':'./files/latlon.csv'}`,csvFormatted,function(err) {
+fs.writeFile(`${out?out+'.csv':'./latlon.csv'}`,csvFormatted,function(err) {
     if(err) {
         return console.log(err);
     }
     console.log("Arquivo convertido com sucesso");
-    console.log(`O arquivo está em: ${out?out+'.csv':'./files/latlon.csv'}`)
+    console.log(`O arquivo está em: ${out?out+'.csv':'./latlon.csv'}`)
 }); 
