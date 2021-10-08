@@ -3,7 +3,7 @@ const utm = require('utm')
 const fs = require('fs');
 const parseCSV = require('./parse-csv')
 
-const {path,out,ajuda,zoneNumber,zoneLetter, northern} = yargs.argv
+const {path,out,ajuda} = yargs.argv
 
 if(ajuda) {
     console.group()
@@ -12,9 +12,7 @@ if(ajuda) {
     console.log("   opções:")
     console.log('       --path: *Obrigatorio*, define o caminho para o arquivo csv de origem \n         Ex: --path="C://arquivo.csv"\n')
     console.log('       --out:  *Opcional*, define o local onde será gravado o arquivo, o valor padrão é "./files/latlon.csv"\n         Ex: --out="C://pasta/nomeDoArquivo"\n')
-    console.log('       --zoneNumber: *Opcional*, define o numero da zona UTM, o valor padrão é 23\n')
-    console.log('       --zoneLetter: *Opcional*, define a letra da zona UTM, o valor padrão é ""\n')
-    console.log('       --northern: *Opcional*, define o hemisferio, o valor padrão é false\n')
+    console.log('Obsevação: O arquivo csv deve estar no formato "Leste;Norte;Numero da zona;Hemisferio"')
     console.groupEnd()
     return
 }
@@ -37,9 +35,9 @@ for(let i=1;i<lines.length;i++) {// a primeira linha é texto
 //utm.toLatLon(easting, northing, zoneNum, zoneLetter, northern, strict = true)
 const E =Number(lines[i][0])
 const N = Number(lines[i][1])
-const zN= zoneNumber||23;
-const zL = zoneLetter||''
-const n = northern||false
+const zN= Number(lines[i][2])||23;
+const n = lines[i][3].toUpperCase==='N'?true:false
+const zL = ''
 convertedLines.push(utm.toLatLon(E,N,zN,zL,n))
 }
 
