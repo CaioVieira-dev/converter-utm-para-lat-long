@@ -1,0 +1,16 @@
+{
+  "name": "latlong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "converter-utm-para-lat-long.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "utm": "^1.1.1",
+    "yargs": "^17.2.1"
+  }
+}
